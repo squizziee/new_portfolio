@@ -1,0 +1,18 @@
+{
+  "name": "new_portfolio",
+  "version": "1.0.0",
+  "description": "portfolio remaster",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/squizziee/new_portfolio.git"
+  },
+  "author": "Ivan Lyango",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
