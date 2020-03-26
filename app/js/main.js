@@ -1,2 +1,2 @@
-var afsfsf = 99;
-alert(afsfsf);
+var afsgsf = 99;
+alert(afsgsf);
