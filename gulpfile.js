@@ -2,6 +2,7 @@ let gulp = require("gulp"),
     sass = require("gulp-sass"),
     autoprefixer = require("gulp-autoprefixer"),
     uglify = require("gulp-uglify"),
+    cleanCss = require("gulp-clean-css"),
     concat = require("gulp-concat"),
     rename = require("gulp-rename");
 
@@ -10,13 +11,16 @@ gulp.task("sass", function() {
         .src("app/sass/*.sass")
         .pipe(sass({outputStyle: "compressed"}))
         .pipe(autoprefixer())
+        .pipe(concat("style.css"))
         .pipe(rename({suffix: ".min"}))
         .pipe(gulp.dest("build/css"));
 });
 
 gulp.task("csslibs", function() {
     return gulp
-        .src("node_modules/swiper/css/swiper.min.css")
+        .src("node_modules/swiper/css/swiper.css")
+        .pipe(cleanCss())
+        .pipe(rename({suffix: ".min"}))
         .pipe(gulp.dest("build/libs/css"))
 });
 
@@ -38,7 +42,13 @@ gulp.task("mainjs", function() {
 
 gulp.task("fonts", function() {
     return gulp
-        .src("src/images/*")
+        .src("app/fonts/*")
+        .pipe(gulp.dest("build/fonts"));
+});
+
+gulp.task("img", function() {
+    return gulp
+        .src("app/img/*")
         .pipe(gulp.dest("build/img"));
 });
 

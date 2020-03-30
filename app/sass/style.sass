@@ -1,11 +1,86 @@
+$bold-font: Portico
+$golden-grey: linear-gradient(to right, #dec489 0%, #f6e0a4 50%, rgba(#fff, .25) 51%)
+$golden: linear-gradient(90deg, #dec489, #f6e0a4)
+
 body
     margin: 0
     padding: 0
-    div
-        background: #000000
-        font-family: consolas
-        width: 100px
-        height: 100px
-        &:hover
-            background: #ff0000
-            border-radius: 15px
+    background: #fff
+    overflow: hidden
+    cursor: none
+*
+    box-sizing: border-box
+.main_screen
+    width: 100%
+    height: 100vh
+    background: #262626
+.menu_bar
+    height: 100%
+    width: 120px
+    position: absolute
+    right: 0
+    top: 0
+    border-left: .5px solid rgba(#fff, .05)
+    &:hover &_headline_text
+        background-position: 0 0   
+    &_headline
+        position: absolute
+        display: flex
+        justify-content: center
+        align-items: center
+        height: 50%
+        width: 100%
+        bottom: 0
+        &_text
+            position: absolute
+            transform: rotate(-90deg)
+            height: 120px
+            width: 50vh
+            display: flex
+            align-items: center
+            text-transform: uppercase
+            font-family: $bold-font
+            font-size: 90px
+            padding-left: 20px
+            transition: .5s ease-in
+            background: $golden-grey
+            -webkit-background-clip: text
+            -webkit-text-fill-color: transparent
+            background-repeat: no-repeat
+            background-size: 200% 100%
+            background-position: -50vh 0
+.cursor
+    position: absolute
+    z-index: 1000
+    width: 30px
+    height: 30px
+    border: 2px solid rgba(#fff, .25)
+    border-radius: 50%
+    transition: .2s width ease-in-out, .2s height ease-in-out
+    pointer-events: none
+    &_active
+        width: 70px
+        height: 70px
+        border: 2px dashed rgba(#fff, .75)
+        animation: rotating 3s linear infinite;
+@keyframes rotating
+    0%
+        transform: rotate(0deg)
+    100%
+        transform: rotate(360deg)
+.main_content
+    width: calc(100% - 120px)
+    height: 100%
+.swiper
+    &-container
+        width: 100%
+        height: 100%
+    &-slide
+        display: flex
+        justify-content: center
+        align-items: center
+.sphere
+    width: 300px
+    height: 300px
+    background: $golden
+    border-radius: 50%
