@@ -28,4 +28,12 @@ $(document).ready(function () {
         },
     })
 
+    $(".toggle_btn").on("click", function() {
+        $(".menu_bar_headline_text").toggleClass("menu_bar_headline_text_active");
+        $(".navigation").toggleClass("navigation_active");
+        setTimeout(function() {
+            $(".navigation_option").toggleClass("navigation_option_final");
+        }, 500);
+    });
+
 });
