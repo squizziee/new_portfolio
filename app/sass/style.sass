@@ -4,6 +4,7 @@ $golden-grey: linear-gradient(to right, #dec489 0%, #f6e0a4 50%, rgba(#fff, .25)
 $golden: linear-gradient(90deg, #dec489, #f6e0a4)
 $golden-solid: #f6e0a4
 $enter-transition-function: cubic-bezier(1.000, 0.030, 0.190, 1.000);
+$enter-transition-function-2: cubic-bezier(0.210, 0.400, 0.000, 1)
 
 body
     margin: 0
@@ -18,6 +19,15 @@ body
     height: 100vh
     background: #262626
     overflow: hidden
+    .content_section
+        position: absolute
+        width: calc(100% - 120px)
+        height: 100%
+        background: #262626
+        transition: 2s transform $enter-transition-function-2
+        @for $i from 2 through 5
+             &:nth-child(#{$i})
+                 transform: translateY(($i - 2) * -100vh)
 .menu_bar
     height: 100%
     width: 120px
@@ -72,19 +82,6 @@ body
         transform: rotate(0deg)
     100%
         transform: rotate(360deg)
-.content_section
-    position: absolute
-    width: calc(100% - 120px)
-    height: 100%
-    background: #262626
-    &:nth-child(1)
-        transform: translateY(0)
-    &:nth-child(2)
-        transform: translateY(-100vh)
-    &:nth-child(3)
-        transform: translateY(-200vh)
-    &:nth-child(4)
-        transform: translateY(-300vh)
 .swiper
     &-container
         width: 100%
