@@ -120,47 +120,43 @@ body
     display: flex
     align-items: center
     justify-content: center
-    &_wrapper
-      display: flex
-      flex-direction: column
-      justify-content: flex-end
     &_active
         left: 0
     &_option
+        width: fit-content
         overflow: hidden
         display: flex
+        position: relative
+        color: rgba(#fff, .25)
+        padding-left: 10px
+        &::after
+            content: ""
+            position: absolute
+            bottom: 0
+            left: 0
+            width: 100%
+            height: 10px
+            background: $golden
+            transform: scaleX(0)
+            transform-origin: left center
+            transition: .3s $enter-transition-function-2
+        &:hover
+            color: rgba(#fff, .75)
+            &::after
+               transform: scaleX(1)  
         span
             display: block
             font-family: $bold-font
             font-weight: 900
-            color: rgba(#fff, .25)
             font-size: 150px
             transform: translateY(100%)
             transition-timing-function: $enter-transition-function;
-            &:nth-child(1)
-                transition: .15s transform
-            &:nth-child(2)
-                transition: .3s transform
-            &:nth-child(3)
-                transition: .45s transform
-            &:nth-child(4)
-                transition: .6s transform
-            &:nth-child(5)
-                transition: .75s transform 
-            &:nth-child(6)
-                transition: .9s transform 
-            &:nth-child(7)
-                transition: 1.05s transform 
-            &:nth-child(8)
-                transition: 1.2s transform 
-            &:nth-child(9)
-                transition: 1.35s transform 
-            &:nth-child(10)
-                transition: 1.5s transform 
-            &:nth-child(11)
-                transition: 1.65s transform 
-            &:nth-child(12)
-                transition: 1.8s transform 
+            $j: 0s
+            @for $i from 1 through 12
+                 &:nth-child(#{$i})
+                     $j: $j + 0.15s
+                     transition: $j
+                     transition-property: transform, color, text-shadow
         &_final
             span
                 transform: translateY(0)
