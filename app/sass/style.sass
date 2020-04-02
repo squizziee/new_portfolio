@@ -1,6 +1,7 @@
 $outline-font: Portico
 $bold-font: "Montserrat", sans-serif
-$serif-font: 'Zilla Slab', serif;
+$serif-font: 'Zilla Slab', serif
+$handwritten-font: 'Tangerine', cursive;
 $golden-grey: linear-gradient(to right, #dec489 0%, #f6e0a4 50%, rgba(#fff, .25) 51%)
 $golden: linear-gradient(90deg, #dec489, #f6e0a4)
 $golden-solid: #f6e0a4
@@ -134,6 +135,7 @@ body
     &_active
         left: 0
     &_option
+        padding-left: 5px
         width: fit-content
         overflow: hidden
         display: flex
@@ -153,14 +155,17 @@ body
         &::before
             content: attr(data-word)
             position: absolute
-            font-family: $serif-font
-            font-size: 18px
+            font-family: $handwritten-font
+            font-size: 30px
             top: 2.5px
-            color: rgba(#fff, .25)
+            color: rgba(#fff, .15)
+            transition: .3s $enter-transition-function-2
         &:hover
             color: rgba(#fff, .75)
             &::after
                transform: scaleX(1)  
+            &::before
+                color: rgba(#fff, .5)
         span
             display: block
             font-family: $bold-font
@@ -177,3 +182,16 @@ body
         &_final
             span
                 transform: translateY(0)
+.flying_icon
+    position: absolute
+    font-size: 25px
+    color: rgba(#fff, .1)
+    &:nth-child(1)
+        top: 50px
+        left: 50px
+    &:nth-child(2)
+        transform: rotate(90deg)
+        right: 25px
+    &:nth-child(3)
+        bottom: 50px
+        left: 50px
