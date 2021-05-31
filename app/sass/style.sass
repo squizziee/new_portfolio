@@ -27,9 +27,14 @@ body
         height: 100%
         background: #262626
         transition: 2s transform $enter-transition-function-2
-        @for $i from 2 through 5
-             &:nth-child(#{$i})
-                 transform: translateY(($i - 2) * -100vh)
+        &:nth-child(1)
+            transform: translateY(0vh)
+        &:nth-child(2)
+            transform: translateY(100vh)
+        &:nth-child(3)
+            transform: translateY(200vh)
+        &:nth-child(4)
+            transform: translateY(300vh)
 .menu_bar
     height: 100%
     width: 120px
@@ -42,15 +47,15 @@ body
         display: flex
         justify-content: center
         align-items: center
-        height: 50%
+        height: calc(100vh - 120px) 
         width: 100%
         bottom: 0
         overflow: hidden
         &_text
             position: absolute
-            transform: rotate(-90deg) translateY(-100%)
+            transform: rotate(-90deg)
             height: 120px
-            width: 50vh
+            width: calc(100vh - 120px) 
             display: flex
             align-items: center
             text-transform: uppercase
@@ -58,24 +63,9 @@ body
             font-size: 90px
             padding-left: 20px
             transition: .5s ease-in
-            background: $golden-grey
-            -webkit-background-clip: text
-            -webkit-text-fill-color: transparent
-            background-repeat: no-repeat
-            background-size: 200% 100%
-            background-position: 0 0
-            &:nth-child(2)
-                transform: rotate(-90deg) translateY(0)
-                background: rgba(#fff, .25)
-                -webkit-background-clip: text
-                -webkit-text-fill-color: transparent
-                background-repeat: no-repeat
-                background-size: 200% 100%
-                background-position: 0 0
+            color: rgba(#fff, 0)
             &_active
-                transform: rotate(-90deg) translateY(0)
-                &:nth-child(2)
-                    transform: rotate(-90deg) translateY(100%)
+                color: rgba(#fff, .1)
 .cursor
     position: absolute
     z-index: 1000
@@ -156,8 +146,8 @@ body
             content: attr(data-word)
             position: absolute
             font-family: $handwritten-font
-            font-size: 30px
-            top: 2.5px
+            font-size: 33px
+            top: 0
             color: rgba(#fff, .15)
             transition: .3s $enter-transition-function-2
         &:hover

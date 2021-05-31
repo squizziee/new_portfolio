@@ -1,4 +1,8 @@
 $(document).ready(function () {
+    $(".content_section:nth-child(2)").css("transform", "translateY(0)");
+    $(".content_section:nth-child(3)").css("transform", "translateY(100vh)");
+    $(".content_section:nth-child(4)").css("transform", "translateY(200vh)");
+    $(".content_section:nth-child(5)").css("transform", "translateY(300vh)");
     var cursor = $(".cursor");
     var cursorWidth = 30;
 
@@ -28,8 +32,9 @@ $(document).ready(function () {
         },
     })
 
+    var sectionCount = 4;
+
     function sidebarToggle() {
-        $(".menu_bar_headline_text").toggleClass("menu_bar_headline_text_active");
         $(".navigation").toggleClass("navigation_active");
         setTimeout(function() {
             $(".navigation_option").toggleClass("navigation_option_final");
@@ -42,41 +47,64 @@ $(document).ready(function () {
 
     $(".about_toggle").on("click", function() {
         sidebarToggle();
-        setTimeout(function() {
-            $(".content_section:nth-child(2)").css("transform", "translateY(0)");
-            $(".content_section:nth-child(3)").css("transform", "translateY(-100vh)");
-            $(".content_section:nth-child(4)").css("transform", "translateY(-200vh)");
-            $(".content_section:nth-child(5)").css("transform", "translateY(-300vh)");
-        }, 500);
+        setActiveSection(1);
     });
 
     $(".contact_toggle").on("click", function() {
         sidebarToggle();
-        setTimeout(function() {
-            $(".content_section:nth-child(2)").css("transform", "translateY(100vh)");
-            $(".content_section:nth-child(3)").css("transform", "translateY(0)");
-            $(".content_section:nth-child(4)").css("transform", "translateY(-100vh)");
-            $(".content_section:nth-child(5)").css("transform", "translateY(-200vh)");
-        }, 500);    
+        setActiveSection(2);
     });
 
     $(".projects_toggle").on("click", function() {
         sidebarToggle();
-        setTimeout(function(){
-            $(".content_section:nth-child(2)").css("transform", "translateY(200vh)");
-            $(".content_section:nth-child(3)").css("transform", "translateY(100vh)");
-            $(".content_section:nth-child(4)").css("transform", "translateY(0)");
-            $(".content_section:nth-child(5)").css("transform", "translateY(-100vh)");
-        }, 500);
+        setActiveSection(3);
     });
 
     $(".testimonials_toggle").on("click", function() {
         sidebarToggle();
-        setTimeout(function() {
-            $(".content_section:nth-child(2)").css("transform", "translateY(300vh)");
-            $(".content_section:nth-child(3)").css("transform", "translateY(200vh)");
-            $(".content_section:nth-child(4)").css("transform", "translateY(100vh)");
-            $(".content_section:nth-child(5)").css("transform", "translateY(0)");
-        }, 500);
+        setActiveSection(4);
     });
+
+    function setActiveSection(sectionIndex) {
+        setTimeout(function() {
+            changeHeadline(sectionIndex);
+            moveSections(sectionIndex + 1);
+        }, 500);
+        setTimeout(function() {
+            $(".menu_bar_headline_text:nth-child(" + sectionIndex + ")")
+                .addClass("menu_bar_headline_text_active");
+        }, 900);
+    }
+
+    function changeHeadline(activeSectionIndex) {
+        for (var i = 1; i <= sectionCount; i++) {
+            if (i != activeSectionIndex) {
+                $(".menu_bar_headline_text:nth-child(" + i +")")
+                    .removeClass("menu_bar_headline_text_active");
+            }
+        }
+        $(".menu_bar_headline_text:nth-child("+ activeSectionIndex +")")
+            .addClass("menu_bar_headline_text_active");
+    }
+
+    function moveSections(activeSectionIndex) {
+        $(".content_section:nth-child(" + activeSectionIndex +")")
+            .css("transform", "translateY(0)");
+        var movementCoeffPos = 0
+        for (var i = activeSectionIndex + 1; i <= sectionCount + 1; i++) {
+            movementCoeffPos++;
+            $(".content_section:nth-child("+ i +")")
+                .css("transform", "translateY(" + movementCoeffPos * 100 +"vh)");
+        }
+        var movementCoeffNeg = 0
+        for (var i = activeSectionIndex - 1; i > 0; i--) {
+            movementCoeffNeg--;
+            $(".content_section:nth-child("+ i +")")
+                .css("transform", "translateY(" + movementCoeffNeg * 100 +"vh)");
+        }
+    }
+
+    function setDefaultSectionPositions() {
+        setActiveSection(1);
+    }
 });
