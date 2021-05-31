@@ -28,7 +28,7 @@ $(document).ready(function () {
             prevEl: '.swiper-button-prev',
         },
         scrollbar: {
-            el: '.swiper-scrollbar',
+            el: '.swiper-scrollbar', 
         },
     })
 
