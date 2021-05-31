@@ -43,24 +43,29 @@ $(document).ready(function () {
 
     $(".toggle_btn").on("click", function() {
        sidebarToggle();
+       $(this).toggleClass("toggle_btn_active");
     });
 
     $(".about_toggle").on("click", function() {
+        setActiveMenuOption($(this));
         sidebarToggle();
         setActiveSection(1);
     });
 
     $(".contact_toggle").on("click", function() {
+        setActiveMenuOption($(this));
         sidebarToggle();
         setActiveSection(2);
     });
 
     $(".projects_toggle").on("click", function() {
+        setActiveMenuOption($(this));
         sidebarToggle();
         setActiveSection(3);
     });
 
     $(".testimonials_toggle").on("click", function() {
+        setActiveMenuOption($(this));
         sidebarToggle();
         setActiveSection(4);
     });
@@ -102,6 +107,13 @@ $(document).ready(function () {
             $(".content_section:nth-child("+ i +")")
                 .css("transform", "translateY(" + movementCoeffNeg * 100 +"vh)");
         }
+    }
+
+    function setActiveMenuOption(obj) {
+        setTimeout(function (params) {
+            $(".navigation_option").removeClass("navigation_option_active");
+            obj.addClass("navigation_option_active");
+        }, 500);
     }
 
     function setDefaultSectionPositions() {
